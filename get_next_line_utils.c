@@ -6,12 +6,11 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:21 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/19 18:11:51 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/19 22:34:11 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 size_t	ft_strlen(const char *s)
 {
@@ -21,18 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[pos])
 		pos++;
 	return (pos);
-}
-
-void ft_putstr(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -63,22 +50,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (s_join);
 }
 
-void	*ft_memchr(const void *s, int c, size_t n)
-{
-	size_t			count;
-	unsigned char	*copy;
-
-	copy = (unsigned char*)s;
-	count = 0;
-	while (count < n)
-	{
-		if (copy[count] == (unsigned char)c)
-			return (&copy[count]);
-		count++;
-	}
-	return (NULL);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*subcopy;
@@ -98,20 +69,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (subcopy);
 }
 
-char	*ft_biggerstr(char *tab, size_t newsize)
-{
-	char *newstr;
-
-	if (!(newstr = malloc(sizeof(char *) * (newsize + 1))))
-		return (NULL);
-
-	newstr = ft_substr(tab, 0, ft_strlen(tab));
-	newstr[ft_strlen(tab)] = '\0';
-	free(tab);
-	return (newstr);
-}
-
-int	ft_strchr(const char *s, int c)
+int		ft_strchr(const char *s, int c)
 {
 	int pos;
 
