@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 22:25:02 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 22:46:10 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ int append_line(int fd, char **line)
 	x = 0;
 	while (temp[x] != '\n' && temp[x])
 		x++;
-	if (!(*line = ft_substr(temp, 0, x + 1)))
+	return_value = ft_strchr(temp, '\n');
+	if (!(*line = ft_substr(temp, 0, x)))
 		return (-1);
 	if (!(str1 = ft_substr(temp, x + 1, ft_strlen(temp) - (x))))
 		return (-1);
 	free(temp);
 	if (!(temp = ft_substr(str1, 0, ft_strlen(str1))))
 		return (-1);
-	if (!(return_value = ft_strchr(*line, '\n')))
+	if (return_value == 0)
 		free(temp);
 	free(str1);
 	return (return_value);
