@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 16:25:49 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 17:59:03 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ int	get_line(int fd, char **temp)
 	{
 		if (!(str = malloc(sizeof(char) * BUFFER_SIZE + 1)))
 			return (-1);
-		end = read(fd, str, BUFFER_SIZE);
-		if (end == 0)
+		if (!(end = read(fd, str, BUFFER_SIZE)) && ft_strlen(*temp) == 0)
 		{
 			free(str);
 			free(*temp);
 			return (0);
 		}
 		str[end] = '\0';
-		*temp = ft_strjoin(*temp, str);
+		*temp = ft_strjoin_f(*temp, str);
+		if (end != BUFFER_SIZE)
+			break ;
 	}
 	return (1);
 }
@@ -57,15 +58,15 @@ int	get_next_line(int fd, char **line)
 		x++;
 	if (!(str2 = ft_substr(temp, 0, x + 1)))
 		return (-1);
-	if (!(str1 = ft_substr(temp, x + 1, ft_strlen(temp) - (x + 1))))
+	if (!(str1 = ft_substr(temp, x + 1, ft_strlen(temp) - (x))))
 		return (-1);
 	free(temp);
 	if (!(temp = ft_substr(str1, 0, ft_strlen(str1))))
 		return (-1);
-	if (!(ft_strchr(str2, '\n')))
-		return_value = 0;
+	if (!(return_value = ft_strchr(str2, '\n')))
+		free(temp);
 	free(str1);
-	if (!(*line = ft_strjoin(*line, str2)))
+	if (!(*line = ft_strjoin_f(*line, str2)))
 		return (-1);
 	return (return_value);
 }

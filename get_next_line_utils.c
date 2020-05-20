@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:21 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/19 22:34:11 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 17:08:43 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (pos);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_f(char const *s1, char const *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
