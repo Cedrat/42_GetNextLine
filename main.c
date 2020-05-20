@@ -20,8 +20,8 @@ int main()
 	{
 
 		i = get_next_line(fd, &tab);
+		printf("str = //------>%s//\n", tab);
 		printf("%d\n", i);
+		free(tab);
 	}
-	printf("str = //------>%s//\n", tab);
-	free(tab);
 }
