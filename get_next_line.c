@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 17:59:03 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 21:24:48 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_line(int fd, char **temp)
 	return (1);
 }
 
-int	get_next_line(int fd, char **line)
+int append_line(int fd, char **line)
 {
 	char		*str1;
 	char		*str2;
@@ -69,4 +69,14 @@ int	get_next_line(int fd, char **line)
 	if (!(*line = ft_strjoin_f(*line, str2)))
 		return (-1);
 	return (return_value);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	if (!(*line))
+	{
+		*line = malloc(sizeof(char));
+		*line[0] = '\0';
+	}
+	return (append_line(fd, &(*line)));
 }
