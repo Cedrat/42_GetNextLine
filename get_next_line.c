@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/19 22:41:46 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 16:25:49 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_next_line(int fd, char **line)
 	if (!(return_value = get_line(fd, &temp)))
 		return (return_value);
 	x = 0;
-	while (temp[x] != '\n')
+	while (temp[x] != '\n' && temp[x])
 		x++;
 	if (!(str2 = ft_substr(temp, 0, x + 1)))
 		return (-1);
@@ -62,6 +62,8 @@ int	get_next_line(int fd, char **line)
 	free(temp);
 	if (!(temp = ft_substr(str1, 0, ft_strlen(str1))))
 		return (-1);
+	if (!(ft_strchr(str2, '\n')))
+		return_value = 0;
 	free(str1);
 	if (!(*line = ft_strjoin(*line, str2)))
 		return (-1);

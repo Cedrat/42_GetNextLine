@@ -16,7 +16,7 @@ int main()
 
 	tab = malloc(sizeof(char*) * BUFFER_SIZE);
 	tab[0] = '\0';
-	fd = open("42",O_RDONLY);
+	fd = open("40",O_RDONLY);
 	while (i > 0)
 	{
 

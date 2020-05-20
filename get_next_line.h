@@ -6,14 +6,14 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:27 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/19 22:48:53 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 15:45:49 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 5
 
 #endif
 # include <unistd.h>
