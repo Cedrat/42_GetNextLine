@@ -15,7 +15,7 @@ int main()
 	int i = 1;
 
 	tab = NULL;
-	fd = open("test_null_cases.txt",O_RDONLY);
+	fd = open("42",O_RDONLY);
 	while (i > 0)
 	{
 

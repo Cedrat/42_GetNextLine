@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 22:46:10 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/20 23:46:08 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	get_line(int fd, char **temp)
 		if (!(end = read(fd, str, BUFFER_SIZE)) && ft_strlen(*temp) == 0)
 		{
 			free(str);
-			free(*temp);
 			return (0);
 		}
 		str[end] = '\0';
@@ -50,8 +49,9 @@ int append_line(int fd, char **line)
 	size_t		x;
 	int			return_value;
 
-	if (!(return_value = get_line(fd, &temp)))
-		return (return_value);
+
+	if ((return_value = get_line(fd, &temp)) == -1)
+		return (-1);
 	x = 0;
 	while (temp[x] != '\n' && temp[x])
 		x++;
