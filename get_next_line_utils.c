@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:21 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 17:08:43 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/21 19:16:48 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*ft_strjoin_f(char const *s1, char const *s2)
 	}
 	s_join[len_s1 + len_s2] = '\0';
 	free((char *)s1);
-	free((char *)s2);
 	return (s_join);
 }
 
@@ -86,4 +85,21 @@ int		ft_strchr(const char *s, int c)
 		return (1);
 	else
 		return (0);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t n;
+
+	n = 0;
+	while (src[n] && (n + 1) < (dstsize))
+	{
+		dst[n] = src[n];
+		n++;
+	}
+	if (dstsize != 0)
+		dst[n] = '\0';
+	while (src[n])
+		n++;
+	return (n);
 }

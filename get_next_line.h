@@ -6,14 +6,14 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:27 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 23:46:18 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/21 19:40:01 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 1000
 
 # endif
 # include <unistd.h>
@@ -24,5 +24,6 @@ char	*ft_strjoin_f(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strchr(const char *s, int c);
 int		get_next_line(int fd, char **line);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif

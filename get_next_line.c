@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/20 23:46:08 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/21 19:35:55 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,57 +16,54 @@
 
 int	get_line(int fd, char **temp)
 {
-	size_t	end;
-	char	*str;
+	char	buff[BUFFER_SIZE + 1];
+	int		end;
 
-	if (!*temp)
+	end = read(fd, buff, BUFFER_SIZE);
+	if (end == -1)
 	{
-		if (!(*temp = malloc(sizeof(char) * BUFFER_SIZE + 1)))
-			return (-1);
-		*temp[0] = '\0';
+		free(*temp);
+		return (-1);
 	}
-	while (!(ft_strchr(*temp, '\n')))
-	{
-		if (!(str = malloc(sizeof(char) * BUFFER_SIZE + 1)))
+	buff[end] = '\0';
+	if (end > 0)
+		if (!(*temp = ft_strjoin_f(*temp, buff)))
 			return (-1);
-		if (!(end = read(fd, str, BUFFER_SIZE)) && ft_strlen(*temp) == 0)
-		{
-			free(str);
-			return (0);
-		}
-		str[end] = '\0';
-		*temp = ft_strjoin_f(*temp, str);
-		if (end != BUFFER_SIZE)
-			break ;
-	}
-	return (1);
+	if (ft_strchr(*temp, '\n'))
+		return (1);
+	else if (end != BUFFER_SIZE)
+		return (0);
+	else
+		return (get_line(fd, *(&temp)));
 }
 
-int append_line(int fd, char **line)
+int	append_line(int fd, char **line)
 {
-	char		*str1;
-	static char	*temp;
-	size_t		x;
-	int			return_value;
+	char			*str;
+	static	char	temp[BUFFER_SIZE + 1];
+	int				return_value;
+	size_t			x;
 
-
-	if ((return_value = get_line(fd, &temp)) == -1)
-		return (-1);
 	x = 0;
-	while (temp[x] != '\n' && temp[x])
+	return_value = 1;
+	if (!(str = ft_substr(temp, 0, ft_strlen(temp))))
+		return (-1);
+	if (!(ft_strchr(str, '\n')))
+		if ((return_value = get_line(fd, &str)) == -1)
+			return (-1);
+	while (str[x] != '\n' && str[x])
 		x++;
-	return_value = ft_strchr(temp, '\n');
-	if (!(*line = ft_substr(temp, 0, x)))
+	if (!(*line = ft_substr(str, 0, x)))
 		return (-1);
-	if (!(str1 = ft_substr(temp, x + 1, ft_strlen(temp) - (x))))
-		return (-1);
-	free(temp);
-	if (!(temp = ft_substr(str1, 0, ft_strlen(str1))))
-		return (-1);
+	if (str[0] && return_value != 0)
+		ft_strlcpy(temp, str + x + 1, ft_strlen(str) - (x));
+	free(str);
 	if (return_value == 0)
-		free(temp);
-	free(str1);
-	return (return_value);
+	{
+		temp[0] = '\0';
+		return (0);
+	}
+	return (1);
 }
 
 int	get_next_line(int fd, char **line)
