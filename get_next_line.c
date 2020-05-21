@@ -6,7 +6,7 @@
 /*   By: lnoaille <lnoaille@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/15 15:00:23 by lnoaille          #+#    #+#             */
-/*   Updated: 2020/05/21 19:35:55 by lnoaille         ###   ########.fr       */
+/*   Updated: 2020/05/21 19:48:42 by lnoaille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	append_line(int fd, char **line)
 
 int	get_next_line(int fd, char **line)
 {
+	if (BUFFER_SIZE < 1)
+		return (-1);
 	return (append_line(fd, &(*line)));
 }
