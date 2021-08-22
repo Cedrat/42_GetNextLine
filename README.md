@@ -13,7 +13,7 @@ fd     : numéro du file descriptor dans lequel on veut lire.
   
 ### Valeurs de retour
 1 : Une ligne a été lue avec succès.  
-0 : La derniere ligne a été lue avec succés.  
+0 : La derniere ligne a été lue avec succès.  
 -1 : Erreur.  
  
 ### Fonctions autorisés 
