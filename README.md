@@ -12,7 +12,7 @@ Le prototype de la fonction est le suivant :
 fd     : numéro du file descriptor dans lequel on veut lire.  
   
 ### Valeurs de retour
-1 : Une ligne a été lue avec succés.  
+1 : Une ligne a été lue avec succès.  
 0 : La derniere ligne a été lue avec succés.  
 -1 : Erreur.  
  
